@@ -1,44 +1,48 @@
-'use strict';
+"use strict";
 
-// arguments object - no longer bound with arrow functions
+console.log('App.js is running!');
 
-var add = function add(a, b) {
-    // console.log(arguments)
-    return a + b;
+// JSX - JavaScript XML
+
+// only render the subtitle and p tag if subtitle exists - logical and operator
+// render new p tag - if option.length > 0 "Here are your options" :No options"
+
+
+var app = {
+    appTitle: "Visibility Toggle",
+    details: " This is the hidden details",
+    showDetails: false
 };
 
-console.log(add(55, 1, 1000));
-
-// this keyword - no longer bound
-
-var user = {
-    name: 'Kevin',
-    cities: ['Bankstown', 'Riverwood', 'Kirawee', 'Eastwood'],
-    printPlacesLived: function printPlacesLived() {
-        var _this = this;
-
-        var cityMessages = this.cities.map(function (city) {
-            return _this.name + ' has lived in ' + city;
-        });
-        return cityMessages;
-    }
+var toggleDetails = function toggleDetails() {
+    app.showDetails = !app.showDetails;
+    renderApp();
 };
 
-console.log(user.printPlacesLived());
+var appRoot = document.getElementById('app');
 
-// Challenge - make an object that has data, create a method that accesses the data
+var renderApp = function renderApp() {
+    var template = React.createElement(
+        "div",
+        null,
+        React.createElement(
+            "h1",
+            null,
+            app.appTitle
+        ),
+        React.createElement(
+            "button",
+            { onClick: toggleDetails },
+            app.showDetails ? "Hide Details" : "Show Details"
+        ),
+        React.createElement(
+            "p",
+            null,
+            app.showDetails ? app.details : undefined
+        )
+    );
 
-var multiplier = {
-    // Array of numbers
-    numArray: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    multiplyBy: 6,
-    multiplyNumbers: function multiplyNumbers() {
-        var _this2 = this;
-
-        return this.numArray.map(function (number) {
-            return _this2.multiplyBy * number;
-        });
-    }
+    ReactDOM.render(template, appRoot);
 };
 
-console.log(multiplier.multiplyNumbers());
+renderApp();
