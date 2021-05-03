@@ -1,6 +1,14 @@
-// import './utils.js'
-import { square, add } from './utils.js'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import IndecisionApp from './components/IndecisionApp'
 
-console.log('app.js is running')
-console.log(square(4))
-console.log(add(4, 6))
+ReactDOM.render(<IndecisionApp/>, document.getElementById('app'))
+
+class OldSyntax {
+    constructor() {
+        this.name = 'Kevin'
+    };
+    getGreeting() {
+        return `Hi. My name is ${this.name}.`;
+    };
+};
