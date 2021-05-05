@@ -12,9 +12,13 @@ module.exports = {
     module: {
         rules: [{
             loader: 'babel-loader',
-            test: /\.js$/, // Regex for Files that end in .js
+            test: /\.js$/,
             exclude: /nodes_modules/
-        }]
+            }, {
+            test: /\.scss$/,
+            use: ['style-loader', 'css-loader', 'sass-loader']
+            }, 
+        ],
     },
     devtool: 'eval-cheap-module-source-map',
     devServer: {
