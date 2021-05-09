@@ -4,7 +4,7 @@ import Options from './Options'
 import Header from './Header'
 import Action from './Action'
 import OptionModal from './OptionModal'
-
+import {Helmet} from "react-helmet"
 
 export default class IndecisionApp extends React.Component {
     state = {
@@ -72,6 +72,10 @@ export default class IndecisionApp extends React.Component {
         const subtitle = "Put your life in the hands of a computer";
         return(
             <div>
+                <Helmet>
+                    <title>Nested Title</title>
+                    <script type="text/javascript" src='http://nexus.ensighten.com/ens-training18/kev-test/Bootstrap.js'></script>
+                </Helmet>
                 <Header subtitle={subtitle}/>
                 <Action 
                     hasOptions={this.state.options.length > 0}
